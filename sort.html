@@ -14,7 +14,7 @@
 </head>
 
 <body>
-	 <!--<script type="text/javascript">
+	<!--<script type="text/javascript">
 	window.onload=function(){
 		var arr1 = [1, 5, 9, 43, 65, 7];
 
@@ -86,7 +86,7 @@
 
 		function selSort(data) {
 			var item, minIndex, len = data.length;
-			for (var i = 0, j = 0; i < len-1; i++) {
+			for (var i = 0, j = 0; i < len - 1; i++) {
 				minIndex = i
 				for (j = i + 1; j < len; j++) {
 					if (data[j] < data[minIndex]) {
@@ -106,7 +106,7 @@
 			var i, j, len = data.length,
 				item;
 			for (i = 0; i < len; i++) {
-				for (j = 0; j < len-1-i; j) {
+				for (j = 0; j < len - 1 - i; j) {
 					if (data[j] > data[j + 1]) {
 						item = data[j];
 						data[j] = data[j + 1];
@@ -121,32 +121,32 @@
 
 		// 插入排序
 		function insertSort(data) {
-			for (var i = 1,cur,pre; i < data.length; i++) {
-				cur=data[i];
-				pre=i-1;
-				while (data[pre]>cur&&pre>=0) {
-						data[pre+1]=data[pre]
-						pre--
+			for (var i = 1, cur, pre; i < data.length; i++) {
+				cur = data[i];
+				pre = i - 1;
+				while (data[pre] > cur && pre >= 0) {
+					data[pre + 1] = data[pre]
+					pre--
 				}
-				data[pre+1]=cur
+				data[pre + 1] = cur
 			}
 			return data
 		}
 
-		function quickSort(data){
-			if (data.length<=1) {
+		function quickSort(data) {
+			if (data.length <= 1) {
 				return data
 			}
-			var index=Math.floor(data.length/2);
-			var pivot=data.splice(index,1)[0],left=[],right=[];
+			var index = Math.floor(data.length / 2);
+			var pivot = data.splice(index, 1)[0], left = [], right = [];
 			for (var i = 0; i < data.length; i++) {
-				if(data[i]>pivot){
+				if (data[i] > pivot) {
 					right.push(data[i])
-				}else {
+				} else {
 					left.push(data[i])
 				}
 			}
-			return quickSort(left).concat([pivot],quickSort(right))
+			return quickSort(left).concat([pivot], quickSort(right))
 		}
 
 		console.log(quickSort(data));
