@@ -60,6 +60,7 @@
   // Internal function that returns an efficient (for current engines) version
   // of the passed-in callback, to be repeatedly applied in other Underscore
   // functions.
+  //迭代器包装
   var optimizeCb = function(func, context, argCount) {
     if (context === void 0) return func;
     switch (argCount == null ? 3 : argCount) {
@@ -130,10 +131,11 @@
   // sparse array-likes as if they were dense.
   _.each = _.forEach = function(obj, iteratee, context) {
     if (obj == null) return obj;
-    iteratee = optimizeCb(iteratee, context);
-    var i, length = obj.length;
-    if (length === +length) {
-      for (i = 0; i < length; i++) {
+    iteratee = optimizeCb(iteratee, context); 
+    var i, length = obj.length; 
+    if (length === +length) {//‘+’是将type转换为Number
+      //length === +length等价于typeof length === “number” && !isNaN(length)
+      for (i = 0; i < length; i++) { 
         iteratee(obj[i], i, obj);
       }
     } else {
@@ -143,7 +145,7 @@
       }
     }
     return obj;
-  };
+  };//支持对象可枚举属性的迭代
 
   // Return the results of applying the iteratee to each element.
   _.map = _.collect = function(obj, iteratee, context) {
