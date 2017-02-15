@@ -150,6 +150,33 @@
 		}
 
 		console.log(quickSort(data));
+
+
+		//fip数列
+
+    //递归
+    var ddd=(n)=>{
+        if(n==1) return 1;
+        if(n==0) return 0;
+        return ddd(n-1)+ddd(n-2)
+    }
+    //时间复杂度O(2^n) 空间复杂度O(n)
+    // console.log(ddd(3),ddd(4),ddd(5),ddd(100))
+    //确实卡出翔 算完要几个世纪23333
+
+    //逆向迭代优化
+    var sss=(n)=>{
+        var lo=0,hi=1,re=[0];
+        if(n==0) return re;
+        for(var i=1;i<n;i++){
+            re.push(hi+lo);
+            hi=hi+lo;
+            lo=hi-lo;
+        }
+        return re
+    }
+    //瞬间完成 时间复杂度O(n),空间复杂度O(1)
+
 	</script>
 
 </body>
