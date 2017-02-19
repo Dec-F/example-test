@@ -363,6 +363,7 @@
     }
     return result;
   };
+  //重写一下函数
 
   // Shuffle a collection, using the modern version of the
   // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
