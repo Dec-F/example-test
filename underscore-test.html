@@ -1,76 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <script src="underscore.js"></script>
 </head>
+
 <body>
     <script>
-    // L132
-//  var optimizeCb = function(func, context, argCount) {
-//     if (context === void 0) return func;
-//     switch (argCount == null ? 3 : argCount) {
-//       case 1: return function(value) {
-//         return func.call(context, value);
-//       };
-//       case 2: return function(value, other) {
-//         return func.call(context, value, other);
-//       };
-//       case 3: return function(value, index, collection) {
-//         return func.call(context, value, index, collection);
-//       };
-//       case 4: return function(accumulator, value, index, collection) {
-//         return func.call(context, accumulator, value, index, collection);
-//       };
-//     }
-//     return function() {
-//       return func.apply(context, arguments);
-//     };
-//   };    
-//   var testEach=function (value){
-//       console.log(value)
-//   }
-//   testEach=optimizeCb(testEach,this);
-//   console.log(testEach)
-// console.log(_.identity,_.VERSION) 
-    //  var l='sss';
-    //  console.log(+l)
+        // L132
+        //  var optimizeCb = function(func, context, argCount) {
+        //     if (context === void 0) return func;
+        //     switch (argCount == null ? 3 : argCount) {
+        //       case 1: return function(value) {
+        //         return func.call(context, value);
+        //       };
+        //       case 2: return function(value, other) {
+        //         return func.call(context, value, other);
+        //       };
+        //       case 3: return function(value, index, collection) {
+        //         return func.call(context, value, index, collection);
+        //       };
+        //       case 4: return function(accumulator, value, index, collection) {
+        //         return func.call(context, accumulator, value, index, collection);
+        //       };
+        //     }
+        //     return function() {
+        //       return func.apply(context, arguments);
+        //     };
+        //   };    
+        //   var testEach=function (value){
+        //       console.log(value)
+        //   }
+        //   testEach=optimizeCb(testEach,this);
+        //   console.log(testEach)
+        // console.log(_.identity,_.VERSION) 
+        //  var l='sss';
+        //  console.log(+l)
 
-    //fip数列
+        //fip数列
 
-    //递归
-    var ddd=(n)=>{
-        if(n==1) return 1;
-        if(n==0) return 0;
-        return ddd(n-1)+ddd(n-2)
-    }
-    //时间复杂度O(2^n) 空间复杂度O(n)
-    // console.log(ddd(3),ddd(4),ddd(5),ddd(100))
-    //确实卡出翔 算完要几个世纪23333
+        //递归
+        // var ddd=(n)=>{
+        //     if(n==1) return 1;
+        //     if(n==0) return 0;
+        //     return ddd(n-1)+ddd(n-2)
+        // }
+        // //时间复杂度O(2^n) 空间复杂度O(n)
+        // // console.log(ddd(3),ddd(4),ddd(5),ddd(100))
+        // //确实卡出翔 算完要几个世纪23333
 
-    //逆向迭代优化
-    var sss=(n)=>{
-        var lo=0,hi=1,re=[0];
-        if(n==0) return re;
-        for(var i=1;i<n;i++){
-            re.push(hi+lo);
-            hi=hi+lo;
-            lo=hi-lo;
-        }
-        return re
-    }
-    //瞬间完成 时间复杂度O(n),空间复杂度O(1)
+        // //逆向迭代优化
+        // var sss=(n)=>{
+        //     var lo=0,hi=1,re=[0];
+        //     if(n==0) return re;
+        //     for(var i=1;i<n;i++){
+        //         re.push(hi+lo);
+        //         hi=hi+lo;
+        //         lo=hi-lo;
+        //     }
+        //     return re
+        // }
+        // //瞬间完成 时间复杂度O(n),空间复杂度O(1)
 
-    console.log(sss(100))
-    // var lll=()=>{
-    //     console.log('object');
-    // }
-    // var fff=(func)=>{
-    //     return func.bind()
-    // }
-    // fff(lll)
-    
+        // console.log(sss(100))
+        // // var lll=()=>{
+        // //     console.log('object');
+        // // }
+        // // var fff=(func)=>{
+        // //     return func.bind()
+        // // }
+        // // fff(lll)
+
+
+        //链表实现
+
+        function LinkedList() {
+            let Node = function (ele) {
+                this.ele = ele
+                this.next = null
+            },
+                length = 0, head = 0;
+            this.append = function (ele) {
+                var node = new Node(element), //{1}         
+                current; //{2} 
+                if (head === null) { //列表中第一个节点 //{3}         
+                head = node; 
+                } else {
+                    current = head; //{4} 
+                    //循环列表，直到找到最后一项         
+                    while(current.next){             
+                        current = current.next;        
+                     } 
+                    //找到最后一项，将其next赋为node，建立链接         
+                    current.next = node; //{5}     
+                } 
+                    length++; //更新列表的长度 //{6} 
+                };
+                this.insert = function (pos, ele) {
+
+                }
+                this.remove = function (ele) {
+                    
+                }
+                this.removeat = function (pos) {
+
+                }
+                this.indexOf = function (ele) {
+
+                }
+                this.isEmpty = function () {
+                }
+                this.size = function () {
+
+                }
+                this.toString = function () {
+                }
+                this.print = function () {
+
+                }
+            }
     </script>
 </body>
+
 </html>
