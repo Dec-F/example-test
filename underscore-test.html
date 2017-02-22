@@ -76,51 +76,88 @@
 
         //链表实现
 
-        function LinkedList() {
-            let Node = function (ele) {
-                this.ele = ele
-                this.next = null
-            },
-                length = 0, head = 0;
-            this.append = function (ele) {
-                var node = new Node(element), //{1}         
-                current; //{2} 
-                if (head === null) { //列表中第一个节点 //{3}         
-                head = node; 
-                } else {
-                    current = head; //{4} 
-                    //循环列表，直到找到最后一项         
-                    while(current.next){             
-                        current = current.next;        
-                     } 
-                    //找到最后一项，将其next赋为node，建立链接         
-                    current.next = node; //{5}     
-                } 
-                    length++; //更新列表的长度 //{6} 
-                };
-                this.insert = function (pos, ele) {
+        // function LinkedList() {
+        //     let Node = function (ele) {
+        //         this.ele = ele
+        //         this.next = null
+        //     },
+        //         length = 0, head = null;
+        //     this.append = function (element) {
+        //         var node = new Node(element), //{1}         
+        //             current; //{2} 
+        //         if (head === null) { //列表中第一个节点 //{3}         
+        //             head = node;
+        //         } else {
+        //             current = head; //{4} 
+        //             //循环列表，直到找到最后一项         
+        //             while (current.next) {
+        //                 current = current.next;
+        //             }
+        //             //找到最后一项，将其next赋为node，建立链接         
+        //             current.next = node; //{5}     
+        //         }
+        //         length++; //更新列表的长度 //{6} 
+        //     };
+        //     this.insert = function (pos, ele) {
 
-                }
-                this.remove = function (ele) {
-                    
-                }
-                this.removeat = function (pos) {
+        //     }
+        //     this.remove = function (ele) {
 
-                }
-                this.indexOf = function (ele) {
+        //     }
+        //     this.removeat = function (pos) {
 
-                }
-                this.isEmpty = function () {
-                }
-                this.size = function () {
+        //     }
+        //     this.indexOf = function (ele) {
 
-                }
-                this.toString = function () {
-                }
-                this.print = function () {
+        //     }
+        //     this.isEmpty = function () {
+        //     }
+        //     this.size = function () {
 
-                }
-            }
+        //     }
+        //     this.toString = function () {
+        //     }
+        //     this.print = function () {
+        //         var current = head, //{1}         
+        //             string = '';    //{2} 
+
+        //         while (current) {   //{3}         
+        //             string += current.ele; //{4}         
+        //             current = current.next;   //{5}     
+        //         }
+        //         return string;                //{6} 
+        //     };
+        // }
+
+        // let LinkedList1 = new LinkedList();
+        // [1, 2, 3, 4, 5, 6].forEach(function (value) {
+        //     LinkedList1.append(value)
+        // })
+        // console.log(LinkedList1.print());
+
+    //  let arr= null, arrr = 10;
+    //     console.log(arr&&arrr);
+
+
+    var person = function(name){
+    this.name = name
+};
+
+person.prototype.getName = function(){
+    return this.name; 
+}
+
+var zzz = new person('zzz');
+// console.log(zzz.getName()); 
+
+console.log(zzz.__proto__ == person.prototype);// true
+console.log(person.__proto__ == Function.prototype);// true
+console.log(person.prototype.__proto__ == Object.prototype);// 不理解1
+console.log(Object.__proto__ == Function.prototype);// true
+console.log(Object.__proto__);// function 不理解2
+console.log(Object.prototype.__proto__);// null 不理解3
+console.log(Function.__proto__);// function 不理解4
+console.log(Function.prototype.__proto__);// object 不理解5
     </script>
 </body>
 

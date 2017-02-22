@@ -1,24 +1,32 @@
-### 高阶函数
+- 练习
+- 测试
+- 源码阅读
+- 知识点速记
+
+
 ```js
-var optimizeCb = function(func, context, argCount) {
-    if (context === void 0) return func;
-    switch (argCount == null ? 3 : argCount) {
-      case 1: return function(value) {
-        return func.call(context, value);
-      };
-      case 2: return function(value, other) {
-        return func.call(context, value, other);
-      };
-      case 3: return function(value, index, collection) {
-        return func.call(context, value, index, collection);
-      };
-      case 4: return function(accumulator, value, index, collection) {
-        return func.call(context, accumulator, value, index, collection);
-      };
-    }
-    return function() {
-      return func.apply(context, arguments);
-    };
-  };
-  ```
-  可以缓存参数，作为下一步的回调，回去看一下柯里化
+        let arr= null, arrr = 10;
+        console.log(arr&&arrr); //null
+        /*
+        **
+        */
+        let arr= 1, arrr = 10;
+        console.log(arr&&arrr);// 10
+        /*
+        **
+        */
+        let arr= 10, arrr = null;
+        console.log(arr&&arrr); //null
+
+
+        //两个都为真，且值由后面的变量决定
+
+```
+
+```js
+        if (length===+length){}
+
+
+        //‘+’是将type转换为Number
+      //length === +length等价于typeof length === “number” && !isNaN(length)
+```
