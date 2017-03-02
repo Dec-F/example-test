@@ -39,3 +39,9 @@ console.log(arr.map(function(obj){sum += obj}))
 console.log(sum);
 console.log(arr.forEach(function(ds){sum1 += ds}));
 console.log(sum1);
+
+let obj1={
+    p1:{
+    
+    }
+}
