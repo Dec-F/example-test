@@ -40,8 +40,12 @@ console.log(sum);
 console.log(arr.forEach(function(ds){sum1 += ds}));
 console.log(sum1);
 
-let obj1={
-    p1:{
+
+
+let arr=[];
+for (var i = 0; i < 10; i++) {
+    arr.push(i)
     
-    }
 }
+console.log(arr);
+console.log(typeof arr);
