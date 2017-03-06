@@ -32,20 +32,113 @@
 
 
 
-var arr = [1,2,3,4],
-sum = 0;
-sum1=0
-console.log(arr.map(function(obj){sum += obj}))
-console.log(sum);
-console.log(arr.forEach(function(ds){sum1 += ds}));
-console.log(sum1);
+// typeof  instanceof 操作符测试
+
+// let arr=[],obj={};
+
+// console.log(typeof arr,typeof shadowCopy,typeof obj,arr instanceof Array);
+
+
+/**
+ * 
+ */
 
 
 
-let arr=[];
-for (var i = 0; i < 10; i++) {
-    arr.push(i)
-    
+
+
+/**
+ * 浅复制测试
+ */
+
+
+let arr=[1,2,3,4];
+function test (name) {
+    this.name=name;
+    this.family={
+        father:'papa',
+        mother:'mama'
+    }
 }
-console.log(arr);
-console.log(typeof arr);
+test.prototype.age=19;
+let obj= new test('ss');
+// obj.__proto__.age='proto';
+// console.log(obj.__proto__);
+for (key in obj){
+    console.log(obj[key]);
+}
+
+
+
+
+const shadowCopy = (souce) => {
+    let temp;
+    if(!souce || typeof souce !== 'object'){
+        return
+    };
+    souce instanceof Array?temp=[]:temp={};
+    for(key in souce){
+        if(souce.hasOwnProperty(key)){
+            temp[key]=souce[key]
+        }
+    }
+    return temp
+}
+
+let objCopy=shadowCopy(obj)
+console.log(objCopy,objCopy.age);
+//{ name: 'ss', family: { father: 'papa', mother: 'mama' } } undefined
+objCopy.name='c';
+objCopy.family.father='baba';
+console.log(obj);
+//test { name: 'ss', family: { father: 'baba', mother: 'mama' } }
+
+/**
+ * 
+ */
+
+/**
+ * 深复制测试
+ */
+
+
+function test (name) {
+    this.name=name;
+    this.family={
+        father:'papa',
+        mother:'mama'
+    }
+}
+test.prototype.age=19;
+
+
+
+const deepCopy = (souce) => {
+    let temp;
+    if(!souce || typeof souce !== 'object'){
+        return
+    };
+    souce instanceof Array?temp=[]:temp={};
+    for(key in souce){
+        if(souce.hasOwnProperty(key)){
+            if(typeof souce[key]==='object'){
+                temp[key]=deepCopy(souce[key])
+            }else{
+                temp[key]=souce[key]
+            }
+        }
+    }
+    return temp
+}
+let obj=new test('sss'),arr=[
+    1,2,3,[
+        7,8,9
+    ]
+]
+objCopy=deepCopy(obj)
+console.log(objCopy);
+//{ name: 'sss', family: { father: 'papa', mother: 'mama' } }
+objCopy.name='ddd';
+objCopy.family.father='baba'
+console.log(obj);
+//test { name: 'sss', family: { father: 'papa', mother: 'mama' } }
