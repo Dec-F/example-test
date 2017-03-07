@@ -71,13 +71,13 @@ for (key in obj){
 
 
 
-const shadowCopy = (souce) => {
+const shallowCopy = (source) => {
     let temp;
-    if(!souce || typeof souce !== 'object'){
+    if(!source || typeof souce !== 'object'){
         return
     };
-    souce instanceof Array?temp=[]:temp={};
-    for(key in souce){
+    source instanceof Array?temp=[]:temp={};
+    for(key in source){
         if(souce.hasOwnProperty(key)){
             temp[key]=souce[key]
         }
@@ -85,7 +85,7 @@ const shadowCopy = (souce) => {
     return temp
 }
 
-let objCopy=shadowCopy(obj)
+let objCopy=shallowCopy(obj)
 console.log(objCopy,objCopy.age);
 //{ name: 'ss', family: { father: 'papa', mother: 'mama' } } undefined
 objCopy.name='c';
@@ -113,18 +113,18 @@ test.prototype.age=19;
 
 
 
-const deepCopy = (souce) => {
+const deepCopy = (source) => {
     let temp;
-    if(!souce || typeof souce !== 'object'){
+    if(!source || typeof source !== 'object'){
         return
     };
-    souce instanceof Array?temp=[]:temp={};
-    for(key in souce){
-        if(souce.hasOwnProperty(key)){
-            if(typeof souce[key]==='object'){
-                temp[key]=deepCopy(souce[key])
+    source instanceof Array?temp=[]:temp={};
+    for(key in source){
+        if(source.hasOwnProperty(key)){
+            if(typeof source[key]==='object'){
+                temp[key]=deepCopy(source[key])
             }else{
-                temp[key]=souce[key]
+                temp[key]=source[key]
             }
         }
     }
