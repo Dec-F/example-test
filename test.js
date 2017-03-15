@@ -167,6 +167,8 @@ console.log(obj);
 /**
  * 
  */
+
+
   const obj={
       set a (val){
         this._a_=val
@@ -182,6 +184,18 @@ console.log(obj);
   obj.b=2
   console.log(obj.a);
 
+
+/**
+ * 
+ */
+
+const obj={
+    log:()=>console.log('obj')
+},obj1={
+    log:()=>{
+        obj.log.call(this)
+    }
+}
 
 /**
  * 
