@@ -163,3 +163,26 @@ console.log(obj);
   * 
   */
 
+
+/**
+ * 
+ */
+  const obj={
+      set a (val){
+        this._a_=val
+      },
+      get a(){
+          return this._b_
+      },
+      set b(val){
+          this._b_=val
+      }
+  }
+  obj.a=1;
+  obj.b=2
+  console.log(obj.a);
+
+
+/**
+ * 
+ */
