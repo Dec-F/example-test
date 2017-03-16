@@ -229,3 +229,29 @@ console.log(c.split('').reverse().join(''));
 
 //?你不知道的Js 15页的提示：上述方法对于包含复杂字符（Unicode，如星号、多字节字符等）的 字符串并不适用
 //好像可以用啊？？？
+
+
+/**
+ * 
+ */
+
+var person = function(name){
+    this.name = name
+};
+
+person.prototype.getName = function(){
+    return this.name; 
+}
+
+var zzz = new person('zzz');
+console.log(zzz.getName()); 
+
+console.log(zzz.__proto__ == person.prototype);// true
+console.log(person.__proto__ == Function.prototype);// true
+console.log(person.prototype.__proto__ == Object.prototype);// true
+console.log(Object.__proto__ == Function.prototype);// true
+console.log(Object.__proto__);// function 
+console.log(Object.prototype.__proto__);// null 
+console.log(Function.__proto__);// function 
+console.log(Function.prototype.__proto__) //object
+
