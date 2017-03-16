@@ -200,3 +200,16 @@ const obj={
 /**
  * 
  */
+
+// es6  箭头函数 argument对象缺失  使用剩余参数
+
+const test =(...args)=>{
+    console.log(args[0],args[1]);
+}
+ 
+ test('sd','er')
+
+ function test1(){
+     console.log( arguments[0],arguments[1])
+ }
+  test1('sd','er')
