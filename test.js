@@ -213,3 +213,19 @@ const test =(...args)=>{
      console.log( arguments[0],arguments[1])
  }
   test1('sd','er')
+
+
+//+ 的强制类型转换
+let d='sd',s= + d;
+console.log(typeof s)
+
+
+let a='hello',b='中文测试',c='!@#$%^&*(()';
+// console.log( Array.prototype.reverse.call(a))
+console.log(a.split('').reverse().join(''));
+console.log(b.split('').reverse().join(''));
+console.log(c.split('').reverse().join(''));
+
+
+//?你不知道的Js 15页的提示：上述方法对于包含复杂字符（Unicode，如星号、多字节字符等）的 字符串并不适用
+//好像可以用啊？？？
