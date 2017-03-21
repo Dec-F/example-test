@@ -274,3 +274,19 @@ console.log(h.toString());
 
 
 
+function test ({a,b,c}) {
+    console.log(a,c,b);
+}
+test({
+    j:1,
+    k:2,
+    l:3
+}) ///undefined undefined undefined
+test({
+    a:1,
+    b:2,
+    c:3
+})///1 3 2
+///参数必须和解构对象属性重名
+
+
