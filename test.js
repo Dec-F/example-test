@@ -363,3 +363,38 @@ function add(xPromise,yPromise) {
 /**
  * 
  */
+
+
+
+let an={
+    a:1,
+    b:function () {
+        console.log(1);
+    }
+},bn=Object.create(an),cn=Object.create(bn);
+console.log(an,bn);
+bn.c=2;
+cn.d=3;
+Object.defineProperty(cn,'e',{
+    value:10,
+    writable:true,
+    enumerable:false,
+    configurable:true
+})
+for (var key in cn) {
+   
+    console.log(key);
+}
+console.log(Object.keys(cn));
+console.log(Object.getOwnPropertyNames(cn));
+//{ a: 1, b: [Function: b] } {}
+//d
+//c
+//a
+//b
+//[ 'd' ]
+//[ 'd', 'e' ]
+
+/**
+ * 
+ */
