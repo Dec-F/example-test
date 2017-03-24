@@ -396,5 +396,7 @@ console.log(Object.getOwnPropertyNames(cn));
 //[ 'd', 'e' ]
 
 /**
- * 
+ * Object.keys返回可枚举属性，一个数组，不含原型继承的
+for-in 遍历全部可枚举属性，包括原型继承的
+Object.getOwnPropertyNames 返回可枚举和不可枚举属性，一个数组，不含原型继承的
  */

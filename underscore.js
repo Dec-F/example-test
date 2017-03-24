@@ -10,7 +10,7 @@
 
   // Establish the root object, `window` in the browser, or `exports` on the server.
   var root = this;
-//全局变量
+  //全局变量
 
 
   // Save the previous value of the `_` variable.
@@ -30,6 +30,9 @@
   // are declared here.
   var
     nativeIsArray      = Array.isArray,
+    //Object.keys返回可枚举属性，一个数组，不含原型继承的
+    //for-in 遍历全部可枚举属性，包括原型继承的
+    //Object.getOwnPropertyNames 返回可枚举和不可枚举属性，一个数组，不含原型继承的
     nativeKeys         = Object.keys,
     nativeBind         = FuncProto.bind,
     nativeCreate       = Object.create;
@@ -62,8 +65,12 @@
   // Internal function that returns an efficient (for current engines) version
   // of the passed-in callback, to be repeatedly applied in other Underscore
   // functions.
-  //迭代器包装
+  //函数包装
+  //返回一个硬绑定到context的函数，等待被调用
   var optimizeCb = function(func, context, argCount) {
+
+    //void 0 取到安全的undifined值
+    //因为undefined 可以被修改
     if (context === void 0) return func;
     switch (argCount == null ? 3 : argCount) {
       case 1: return function(value) {
@@ -94,7 +101,7 @@
     return _.property(value);
   };
   _.iteratee = function(value, context) {
-    return cb(value, context, Infinity);
+    return cb(value, context, Infinity); 
   };
 
   // An internal function for creating assigner functions.
@@ -133,7 +140,8 @@
   // sparse array-likes as if they were dense.
   _.each = _.forEach = function(obj, iteratee, context) {
     if (obj == null) return obj;
-    iteratee = optimizeCb(iteratee, context); 
+    //返回一个绑定了上下文的迭代器
+    iteratee = optimizeCb(iteratee, context);
     var i, length = obj.length; 
     if (length === +length) {
       //‘+’是将type转换为Number
