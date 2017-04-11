@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        p{
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <input type="checkbox">
+    <script>
+        // d3.selectAll('p').style('background',function () {
+        //     return 'rgb('+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+','+Math.floor(Math.random()*255)+')'
+        // })
+        d3.selectAll('p').data([1,2,5,78,654,325,987,9875641,1651]).text(function(d){
+            return d
+        });
+        d3.selectAll('p').style('opacity',function (d){
+            return d/10
+        })
+    </script>
+
+</body>
+
+</html>
