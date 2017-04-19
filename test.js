@@ -400,3 +400,47 @@ console.log(Object.getOwnPropertyNames(cn));
 for-in 遍历全部可枚举属性，包括原型继承的
 Object.getOwnPropertyNames 返回可枚举和不可枚举属性，一个数组，不含原型继承的
  */
+
+
+
+
+//箭头函数this
+function sd () {
+    this.name ='11'
+
+const tests = {
+    name:'ddd',
+    sayName:() => console.log(this.name)
+}
+ tests.sayName()
+}
+sd.name='sd'
+tests= new sd()
+
+tests.sayName()
+
+function foo() {
+  setTimeout( () => {
+    console.log("id:", this.id);
+  },100);
+}
+
+var id = 21; // 加入这行
+
+foo.call( { id: 42 } );
+
+function foo() {
+  return () => {
+    return () => {
+      return () => {
+        console.log("id:", this.id);
+      };
+    };
+  };
+}
+
+var f = foo.call({id: 1});
+
+var t1 = f.call({id: 2})()();
+var t2 = f().call({id: 3})();
+var t3 = f()().call({id: 4});
