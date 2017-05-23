@@ -444,3 +444,34 @@ var f = foo.call({id: 1});
 var t1 = f.call({id: 2})()();
 var t2 = f().call({id: 3})();
 var t3 = f()().call({id: 4});
+
+
+
+let a = '10px'
+
+a= parseInt(a)+1 +'px'
+
+console.log(a);
+
+
+
+function fetchA () {
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{resolve(1)},1000)
+    })
+}
+
+function fetchB () {
+    return new Promise((resolve,reject)=>{
+        // setTimeout(()=>{resolve(2)},2000)
+        reject(new Error('err'))
+    })
+}
+
+function add(a,b){
+    return Promise.all([a,b]).then((val)=>{
+        return val[0]+val[1]
+    })
+}
+
+add(fetchA(),fetchB()).then((val)=>console.log(val)).catch((err)=>console.log(err))
