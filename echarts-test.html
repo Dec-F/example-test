@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/echarts/3.5.4/echarts.js"></script>
+    <style>
+        #app {
+            width: 800px;
+            height: 500px;
+            background-color: darkcyan
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <script>
+        var app = document.getElementById('app'),
+            myEcharts = echarts.init(app),
+            // name='1233',
+            option = {
+                title: {
+                    text: '未来一周气温变化',
+                    subtext: '纯属虚构'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['最高\n气温', '最低气温'],
+                    selected: {
+                        '最高气温': true
+                    },
+                    formatter: function (name) {
+                        return echarts.format.truncateText(name, 60, '14px Microsoft Yahei', '…');
+                    },
+                    tooltip: {
+                        show: true
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: { readOnly: false },
+                        magicType: { type: ['line', 'bar'] },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    name:'sd',
+                    nameLocation:'end',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                },
+                dataZoom:[{
+                    type:'inside'
+                }],
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                },
+                series: [
+                    {
+                        name: '最高\n气温',
+                        type: 'line',
+                        data: [11, 11, 15, 13, 12, 13, 10],
+                        markPoint: {
+                            data: [
+                                { type: 'max', name: '最大值' },
+                                { type: 'min', name: '最小值' }
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'average', name: '平均值' }
+                            ]
+                        }
+                    },
+                    {
+                        name: '最低气温',
+                        type: 'line',
+                        data: [1, -2, 2, 5, 3, 2, 0],
+                        markPoint: {
+                            data: [
+                                { name: '周最低', value: -2, xAxis: 1, yAxis: -1.5 }
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                { type: 'average', name: '平均值' },
+                                [{
+                                    symbol: 'none',
+                                    x: '90%',
+                                    yAxis: 'max'
+                                }, {
+                                    symbol: 'circle',
+                                    label: {
+                                        normal: {
+                                            position: 'start',
+                                            formatter: '最大值'
+                                        }
+                                    },
+                                    type: 'max',
+                                    name: '最高点'
+                                }]
+                            ]
+                        }
+                    }
+                ]
+            };
+
+
+
+        myEcharts.setOption(option)
+    </script>
+</body>
+
+</html>
