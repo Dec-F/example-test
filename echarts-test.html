@@ -18,7 +18,8 @@
 
 <body>
 
-    <div id="app"></div>
+    <div id="app">
+    </div>
     <script>
         var app = document.getElementById('app'),
             myEcharts = echarts.init(app),
@@ -57,13 +58,13 @@
                 },
                 xAxis: {
                     type: 'category',
-                    name:'sd',
-                    nameLocation:'end',
+                    name: 'sd',
+                    nameLocation: 'end',
                     boundaryGap: false,
                     data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
                 },
-                dataZoom:[{
-                    type:'inside'
+                dataZoom: [{
+                    type: 'inside'
                 }],
                 yAxis: {
                     type: 'value',
