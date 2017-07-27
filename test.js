@@ -475,3 +475,7 @@ function add(a,b){
 }
 
 add(fetchA(),fetchB()).then((val)=>console.log(val)).catch((err)=>console.log(err))
+
+
+
+
