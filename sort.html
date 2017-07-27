@@ -5,10 +5,12 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>test</title>
-
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower|Roboto" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 </head>
 
 <body>
+	<h2 style="font-family: 'Indie Flower', cursive;">sadasdasdasdasdasd</h2>
 	<!--<script type="text/javascript">
 	window.onload=function(){
 		var arr1 = [1, 5, 9, 43, 65, 7];
@@ -58,8 +60,19 @@
 			return arr
 		}
 	console.log(ddd());-->
+	<p id="out">sdadasd</p>
 
 	<script>
+		$('#out').text(JSON.stringify(window.navigator.appCodeName,null,4))
+		console.log(navigator);
+		alert(window.navigator.appCodeName)
+		var sourse=$.ajax('./data.json',{
+			type:'GET',
+			success:function(data) {
+				data
+				console.log(data);
+			}
+		})
 		function getRandom(min, max) {
 			return Math.floor(Math.random() * (max - min) + min)
 		}

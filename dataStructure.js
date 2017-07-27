@@ -72,22 +72,67 @@
 
 
     let annual = new Annual(data)
-    annual.show(1,2)
+    annual.show(1, 2)
 }
 
 /**
  * 4
  */
 
- {
-     function Word (obj) {
-         this._wrap=obj
-     }
-        Word.prototype.showWord=function() {
-           console.log(this._wrap.word.join(''))
+{
+    function Word(obj) {
+        this._wrap = obj
+    }
+    Word.prototype.showWord = function () {
+        console.log(this._wrap.word.join(''))
+    }
+    let word = new Word({
+        word: ['h', 'e', 'l', 'l', 'o', 'w']
+    })
+    word.showWord()
+}
+
+
+/**
+ * List
+ */
+
+{
+    function List() {
+        this.listSize = 0;
+        this.pos = 0;
+        this.dataStore = [];
+        this.clear = clear;
+        this.find = find;
+        this.toString = toString;
+        this.insert = insert;
+        this.append = append;
+        this.remove = remove;
+        this.front = front;
+        this.end = end;
+        this.prev = prev;
+        this.next = next;
+        this.length = length;
+        this.currPos = currPos;
+        this.moveTo = moveTo;
+        this.getElement = getElement; this.length = length;
+        this.contains = contains;
+    }
+
+
+    List.prototype = {
+        constructor: List,
+        clear: function () {
+            this.dataStore = []
+        },
+        find: function (el) {
+            return this.dataStore.some((val, index) => {
+                return val === el
+            })
         }
-        let word = new Word({
-            word:['h','e','l','l','o','w']
-        })
-        word.showWord()
- }
+    }
+}
+
+ /**
+  * 
+  */
