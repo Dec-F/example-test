@@ -11,3 +11,5 @@ modern.json
 modern.jsonp
 resources/sass/.sass-cache/
 .idea
+
+node_modules
