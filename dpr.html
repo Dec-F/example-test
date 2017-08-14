@@ -13,20 +13,78 @@
 <body>
     <div>asdasd</div>
     <script>
-       
-        var p =new pb.Person();
-        p.setName('子慕');
-        p.setId('1');
-        p.setEmail('xx@xx.com');
-        var binary = p.serializeBinary();
-        console.log(p,binary);
-        var person = new pb.Person.deserializeBinary(binary);
-        var obj = {
-            　　name: person.getName(),
-            　　id: person.getId(),
-            　　email: person.getEmail(),
+        // var p =new pb.Person();
+        // p.setName('子慕');
+        // p.setId('1');
+        // p.setEmail('xx@xx.com');
+        // var binary = p.serializeBinary();
+        // console.log(p,binary);
+        // var person = new pb.Person.deserializeBinary(binary);
+        // var obj = {
+        //     　　name: person.getName(),
+        //     　　id: person.getId(),
+        //     　　email: person.getEmail(),
+        // }
+        // console.log(obj);
+        var socket = new WebSocket('ws://106.14.52.51:8889/ws')
+
+        socket.onopen = function (event) {
+            console.log('socket连接成功');
+            // self.sendLoginReq(self.userInfo);
+            // clearInterval(self.heartbeat_timer);
+            // self.heartbeat_timer = setInterval(function () {
+            //     self.keepAlive();
+            // }, 15000);
+        };
+        // 监听消息
+        socket.onmessage=function(me) {
+            console.log(me);
         }
-        console.log(obj);
+
+
+        function sendLoginReq(userInfo) {
+            var opts = {
+                'uid': Number(userInfo.uid || -1),
+                'pwd': userInfo.pwd + '',
+                'devid': userInfo.devid + '',
+                'app': 'webapp',
+                'rt': Number(userInfo.rt),
+                'vk': userInfo.vk + '',
+                'ver': userInfo.ver + '',
+                'channel': 'weixin'
+            };
+
+            sendMsg(opts, 'Gateway.Login.Req');
+        }
+        function sendMsg(opts, service) {
+            // if (debug_obj && debug_obj.debug) {
+            //     console.log('[发送消息]', service, opts);
+            // }
+
+            var messageBuffer;
+            if (service === 0) { //心跳包空内容
+                messageBuffer = [];
+            } else {
+                messageBuffer = pbModel.encodeProtobufMessage(service, opts);
+            }
+
+            var buffer = new ArrayBuffer(messageBuffer.length + 16);
+            var view = new DataView(buffer);
+            if (service !== 0) {
+                service = crc32(service);
+            }
+            view.setInt32(0, 0, false);
+            view.setInt32(4, messageBuffer.length, false);
+            view.setInt32(8, service, false);
+            view.setInt32(12, crc32(messageBuffer), false);
+            for (var i = 0, len = messageBuffer.length; i < len; i++) {
+                view.setUint8(i + 16, messageBuffer[i]);
+            }
+
+            if (this.socket) {
+                this.socket.send(buffer);
+            }
+        }
     </script>
 </body>
 
