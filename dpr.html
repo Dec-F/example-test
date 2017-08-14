@@ -13,21 +13,20 @@
 <body>
     <div>asdasd</div>
     <script>
-        // var person = new proto.protocal.Person();
-        // person.setName('子慕');
-        // person.setId('1');
-        // person.setEmail('xx@xx.com');
-        // var binary = person.serializeBinary();
-        // //解析
-        // var person = new proto.protocal.Person.deserializeBinary(unit8array);
-        // var obj = {
-        //     　　name: person.getName(),
-        //     　　id: person.getId(),
-        //     　　email: person.getEmail(),
-        // }
+       
         var p =new pb.Person();
         p.setName('子慕');
-        console.log(p);
+        p.setId('1');
+        p.setEmail('xx@xx.com');
+        var binary = p.serializeBinary();
+        console.log(p,binary);
+        var person = new pb.Person.deserializeBinary(binary);
+        var obj = {
+            　　name: person.getName(),
+            　　id: person.getId(),
+            　　email: person.getEmail(),
+        }
+        console.log(obj);
     </script>
 </body>
 
