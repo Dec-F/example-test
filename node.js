@@ -29,3 +29,15 @@ const fs = require('fs')
     if (err) throw err;
     // writeMyData(fd);
   });
+
+
+
+  var pb={
+    User:function(a) {
+      this.a=a
+    }
+  }
+
+  var s='User'
+
+  console.log(new pb.User());

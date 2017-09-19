@@ -99,7 +99,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js__);
 
-window.pb=__WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js___default.a
+window.pbModel=__WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js___default.a
 console.log(__WEBPACK_IMPORTED_MODULE_0__linkerProtocol_pb_js___default.a);
 
 /***/ }),

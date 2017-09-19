@@ -129,7 +129,8 @@
             return this.dataStore.some((val, index) => {
                 return val === el
             })
-        }
+        },
+        
     }
 }
 

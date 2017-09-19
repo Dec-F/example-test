@@ -13,78 +13,118 @@
 <body>
     <div>asdasd</div>
     <script>
-        // var p =new pb.Person();
-        // p.setName('子慕');
-        // p.setId('1');
+
+        function setPbValues (valObject,recObject) {
+            var keys = Object.keys(valObject)
+            keys.forEach(function(val) {
+                var s=val
+                s=`${s[0].toUpperCase()}${s.slice(1)}`
+                recObject['set'+s](valObject[val])
+            })
+        }
+        
+        var p =new pbModel.LoginResp();
+        console.log(pbModel);
+        setPbValues({
+            status:0
+        },p)
+        // p.setUid(111);
+        // p.setGender(1);
+        // p.addGuardarray(222,2)
         // p.setEmail('xx@xx.com');
-        // var binary = p.serializeBinary();
-        // console.log(p,binary);
-        // var person = new pb.Person.deserializeBinary(binary);
-        // var obj = {
-        //     　　name: person.getName(),
-        //     　　id: person.getId(),
-        //     　　email: person.getEmail(),
-        // }
-        // console.log(obj);
-        var socket = new WebSocket('ws://106.14.52.51:8889/ws')
+        var binary = p.serializeBinary();
+        console.log('序列化:',p);
+        console.log('二进制:',binary);
+        var person =  pbModel.LoginResp.deserializeBinary(binary);
 
-        socket.onopen = function (event) {
-            console.log('socket连接成功');
-            // self.sendLoginReq(self.userInfo);
-            // clearInterval(self.heartbeat_timer);
-            // self.heartbeat_timer = setInterval(function () {
-            //     self.keepAlive();
-            // }, 15000);
-        };
-        // 监听消息
-        socket.onmessage=function(me) {
-            console.log(me);
-        }
+        console.log('解码后:',person);
+        console.log('解析序列:',person.toObject());
 
 
-        function sendLoginReq(userInfo) {
-            var opts = {
-                'uid': Number(userInfo.uid || -1),
-                'pwd': userInfo.pwd + '',
-                'devid': userInfo.devid + '',
-                'app': 'webapp',
-                'rt': Number(userInfo.rt),
-                'vk': userInfo.vk + '',
-                'ver': userInfo.ver + '',
-                'channel': 'weixin'
-            };
 
-            sendMsg(opts, 'Gateway.Login.Req');
-        }
-        function sendMsg(opts, service) {
-            // if (debug_obj && debug_obj.debug) {
-            //     console.log('[发送消息]', service, opts);
-            // }
+    //     var pbModel = (function() {
+    //         var serviceName2Class = $.extend({}, serviceName2ClassList);
+    //         var pb= PbModule
+    
+    //         function setPbValues (valObject,recObject) {
+    //             var keys = Object.keys(valObject)
+    //             keys.forEach(function(val) {
+    //                 var s=val
+    //                 s='set'+s[0].toUpperCase()+s.slice(1).toLowerCase()
+                    
+    //                 recObject[s](valObject[val])
+    //             })
+    //         }
+    //         // protobuf.load(staticPath + 'js/linkerProtocol.proto', function(err, root) {
+    //         //     if (err) {
+    //         //         throw err;
+    //         //     }
+    
+    //         //     protobufRoot = root;
+    //         //     // console.log('root',root);
+    
+    //         //     $.pub('protobufLoadEnd', []);
+    //         // });
+    
+            
+    
+    //         // function encodeProtobufMessage(serviceName, objData) {
+    //         //     var MessageModel = protobufRoot.lookup('linkerProtocol.' + serviceName2Class[serviceName]);
+    //         //     var message = MessageModel.create(objData);
+    //         //     var errMsg = MessageModel.verify(message);
+    //         //     if (errMsg) {
+    //         //         throw Error(errMsg);
+    //         //         console.log('[encodeProtobufMessage]', serviceName, objData);
+    //         //         return;
+    //         //     }
+    //         //     var buffer = MessageModel.encode(message).finish();
+    //         //     return buffer;
+    //         // };
+    //         function encodeProtobufMessage(serviceName, objData) {
+    //             var ser=serviceName2Class[serviceName]
+    //             var messageModel =new pb[ser]()
+    //             console.log(messageModel);
+    
+    //             // messageModel.setAttrid(1)
+    //             // console.log(messageModel);
+    //             setPbValues(objData,messageModel)
+    
+    //             var buffer = messageModel.serializeBinary()
+    
+    //             return buffer
+    //         };
+    
+    //         // function decodeProtobufMessage(serviceName, buffer) {
+    //         //     var MessageModel = protobufRoot.lookup('linkerProtocol.' + serviceName2Class[serviceName]);
+    //         //     var message = MessageModel.decode(buffer, buffer.byteLength);
+    //         //     var errMsg = MessageModel.verify(message);
+    //         //     if (errMsg) {
+    //         //         throw Error(errMsg);
+    //         //         console.log('[decodeProtobufMessage]', serviceName, buffer);
+    //         //         return;
+    //         //     }
+    //         //     return message;
+    //         // };
+    //         function decodeProtobufMessage(serviceName, buffer) {
+    //             var ser=serviceName2Class[serviceName]
+    //             var message =new pb[ser](buffer)
+    // debugger
+    //            message = message.toObject()
+    
+    //            return message
+    //         };
+    
+    //         return {
+    //             encodeProtobufMessage: encodeProtobufMessage,
+    //             decodeProtobufMessage: decodeProtobufMessage
+    //         };
+    //     })();
 
-            var messageBuffer;
-            if (service === 0) { //心跳包空内容
-                messageBuffer = [];
-            } else {
-                messageBuffer = pbModel.encodeProtobufMessage(service, opts);
-            }
 
-            var buffer = new ArrayBuffer(messageBuffer.length + 16);
-            var view = new DataView(buffer);
-            if (service !== 0) {
-                service = crc32(service);
-            }
-            view.setInt32(0, 0, false);
-            view.setInt32(4, messageBuffer.length, false);
-            view.setInt32(8, service, false);
-            view.setInt32(12, crc32(messageBuffer), false);
-            for (var i = 0, len = messageBuffer.length; i < len; i++) {
-                view.setUint8(i + 16, messageBuffer[i]);
-            }
+     var  old= '{"0":8,"1":172,"2":142,"3":230,"4":237,"5":6,"6":18,"7":14,"8":107,"9":122,"10":99,"11":50,"12":83,"13":89,"14":50,"15":56,"16":102,"17":50,"18":54,"19":100,"20":101,"21":99,"22":26,"23":0,"24":34,"25":6,"26":119,"27":101,"28":98,"29":97,"30":112,"31":112,"32":40,"33":209,"34":215,"35":234,"36":204,"37":5,"38":50,"39":48,"40":52,"41":102,"42":103,"43":86,"44":83,"45":68,"46":106,"47":54,"48":43,"49":43,"50":114,"51":67,"52":108,"53":83,"54":89,"55":75,"56":107,"57":56,"58":53,"59":90,"60":102,"61":82,"62":77,"63":50,"64":81,"65":99,"66":117,"67":48,"68":90,"69":82,"70":119,"71":100,"72":118,"73":84,"74":97,"75":90,"76":98,"77":82,"78":84,"79":97,"80":84,"81":108,"82":116,"83":113,"84":109,"85":81,"86":61,"87":61,"88":58,"89":11,"90":50,"91":48,"92":49,"93":55,"94":48,"95":51,"96":50,"97":49,"98":46,"99":48,"100":49,"101":66,"102":6,"103":119,"104":101,"105":105,"106":120,"107":105,"108":110}'
+        var pb='{"0":8,"1":172,"2":142,"3":230,"4":237,"5":6,"6":18,"7":14,"8":107,"9":122,"10":99,"11":50,"12":83,"13":89,"14":50,"15":56,"16":102,"17":50,"18":54,"19":100,"20":101,"21":99,"22":26,"23":0,"24":34,"25":6,"26":119,"27":101,"28":98,"29":97,"30":112,"31":112,"32":40,"33":209,"34":215,"35":234,"36":204,"37":5,"38":50,"39":48,"40":52,"41":102,"42":103,"43":86,"44":83,"45":68,"46":106,"47":54,"48":43,"49":43,"50":114,"51":67,"52":108,"53":83,"54":89,"55":75,"56":107,"57":56,"58":53,"59":90,"60":102,"61":82,"62":77,"63":50,"64":81,"65":99,"66":117,"67":48,"68":90,"69":82,"70":119,"71":100,"72":118,"73":84,"74":97,"75":90,"76":98,"77":82,"78":84,"79":97,"80":84,"81":108,"82":116,"83":113,"84":109,"85":81,"86":61,"87":61,"88":58,"89":11,"90":50,"91":48,"92":49,"93":55,"94":48,"95":51,"96":50,"97":49,"98":46,"99":48,"100":49,"101":66,"102":6,"103":119,"104":101,"105":105,"106":120,"107":105,"108":110}'
 
-            if (this.socket) {
-                this.socket.send(buffer);
-            }
-        }
+       console.log( pb===old)
     </script>
 </body>
 
